@@ -14,48 +14,52 @@ public class TestFrame extends JFrame  {
     MyPanel northPanel;
 
     public TestFrame(String title) throws HeadlessException  {
-        init(0);
-    }
-    public void init(int x){
+        super(title);
         setLayout(new BorderLayout());
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(1200, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        init(0);
         jButton1.addActionListener(new MyActionListener());
-        northPanel = new MyPanel();
-        barChart_awt = new BarChart_AWT("Random Array", x);
-
-
-
         add(northPanel,BorderLayout.NORTH);
-        add(barChart_awt,BorderLayout.CENTER);
-        jProgressBar.setStringPainted(true);
-        jProgressBar.setMinimum(0);
-        jProgressBar.setMaximum(counter);
+
+
         northPanel.add(jTextField);
         northPanel.add(jButton1);
         northPanel.add(jButton2);
         northPanel.add(jProgressBar);
+        jProgressBar.setMinimum(0);
+
+
+
+
+    }
+    public void init(int x){
+
+
+        northPanel = new MyPanel();
+        barChart_awt = new BarChart_AWT("Random Array", x);
+        jProgressBar.setStringPainted(true);
+        jProgressBar.setMaximum(counter);
+        jProgressBar.setValue((int) barChart_awt.tmp);
+
+
+        add(barChart_awt,BorderLayout.CENTER);
 
         setVisible(true);
     }
-        public void upd(){
-        repaint();
-        jProgressBar.setValue((int) barChart_awt.tmp);
-        }
-
 
     private class MyActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             remove(barChart_awt);
-            remove(northPanel);
-            remove(jProgressBar);
+            //remove(jProgressBar);
+
             String count = jTextField.getText();
             counter = Integer.parseInt(count);
             init(counter);
 
 
-            upd();
+
 
         }
 

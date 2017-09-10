@@ -24,9 +24,9 @@ public class BarChart_AWT extends JPanel {
         chartPanel.setPreferredSize(new java.awt.Dimension( 1000 ,800  ) );
         add( chartPanel);
         setVisible(true);
-        System.out.println(x);
 
     }
+
     public double tmp;
     private CategoryDataset createDataset(int x ) {
         String[] arr2 = new String[100];
@@ -52,8 +52,6 @@ public class BarChart_AWT extends JPanel {
         for (int i = 0; i < 100; i++) {
             dataset.addValue(arr1[i],arr2[i], speed);
         }
-
-        System.out.println(arr1[1]);
 
         return dataset;
     }
