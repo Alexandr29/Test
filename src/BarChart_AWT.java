@@ -4,13 +4,13 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
+import javax.swing.*;
 
 
-public class BarChart_AWT extends ApplicationFrame {
-    public BarChart_AWT( String applicationTitle , String chartTitle, int x ) {
-        super( applicationTitle );
+public class BarChart_AWT extends JPanel {
+
+
+    public BarChart_AWT(String chartTitle, int x ) {
         JFreeChart barChart = ChartFactory.createBarChart(
                 chartTitle,
                 "Category",
@@ -20,24 +20,28 @@ public class BarChart_AWT extends ApplicationFrame {
                 true, true, false);
 
         ChartPanel chartPanel = new ChartPanel( barChart );
-        chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
-        setContentPane( chartPanel );
-        pack( );
-        RefineryUtilities.centerFrameOnScreen(this);
+        chartPanel.repaint();
+        chartPanel.setPreferredSize(new java.awt.Dimension( 1000 ,800  ) );
+        add( chartPanel);
         setVisible(true);
-    }
+        System.out.println(x);
 
+    }
+    public double tmp;
     private CategoryDataset createDataset(int x ) {
         String[] arr2 = new String[100];
         double arr1[] = new double[100];
+        final String speed = "Array";
 
-        final String speed = "Speed";
+
+
         final DefaultCategoryDataset dataset =
                 new DefaultCategoryDataset( );
 
 
 
         for (int i = 0; i < x; i++) {
+            tmp = x;
             int myRandom = (int) (Math.random() * 100);
             arr1[myRandom]++;
         }
@@ -49,7 +53,8 @@ public class BarChart_AWT extends ApplicationFrame {
             dataset.addValue(arr1[i],arr2[i], speed);
         }
 
+        System.out.println(arr1[1]);
+
         return dataset;
     }
-
 }
